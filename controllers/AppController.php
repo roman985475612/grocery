@@ -12,4 +12,11 @@ class AppController extends Controller
 
         return parent::beforeAction($action);
     }
+
+    protected function setMeta($title = null, $keywords = null, $description = null)
+    {
+        $this->view->title = $title . " | " . \Yii::$app->name;
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+        $this->view->registerMetaTag(['name' => 'description', 'content' => $description]);
+    }
 }

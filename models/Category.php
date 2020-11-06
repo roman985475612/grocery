@@ -10,4 +10,9 @@ class Category extends ActiveRecord
     {
         return '{{%category}}';
     }
+
+    public function getProducts()
+    {
+        return $this->hasMany(Product::class, ['category_id' => 'id']);
+    }
 }

@@ -39,8 +39,10 @@ use yii\helpers\Url;
             </div>
         </section>
     </div>
+    
     <div class="clearfix"></div>
 </div>
+
 <!-- banner -->
 <div class="banner_bottom">
         <div class="wthree_banner_bottom_left_grid_sub">
@@ -74,6 +76,7 @@ use yii\helpers\Url;
         </div>
         <div class="clearfix"> </div>
 </div>
+
 <!-- top-brands -->
 <?php if (!empty($offers)): ?>
     <div class="top-brands">

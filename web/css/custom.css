@@ -1,3 +1,8 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .pagination li a,
 .pagination li a:hover,
 .pagination li span {

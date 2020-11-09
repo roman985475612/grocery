@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 
-$href = Url::to(['category/view', 'id' => $category['id']]);
+$href = Url::to(['product/list', 'id' => $category['id']]);
 ?>
 <?php if (isset($category['children'])): ?>
     <li class="dropdown">

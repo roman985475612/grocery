@@ -5,7 +5,11 @@ use yii\helpers\Url;
 ?>
 
 <?= $this->render('//layouts/inc/_breadcrumb', [
-    'title' => $category->title,
+    'links' => [
+        [
+            'title' => $topic,    
+        ],
+    ],
 ]) ?>
 
 <!-- banner -->
@@ -66,10 +70,9 @@ use yii\helpers\Url;
 				<div class="clearfix"> </div>
 			</div>
 			<div class="w3ls_w3l_banner_nav_right_grid">
-                <h3><?= $category->title ?></h3>
+                <h3><?= $topic ?></h3>
                 <div class="w3ls_w3l_banner_nav_right_grid1">
                     <?php if (!empty($products)): ?>
-                        <!--h6>food</h6-->
                         <?php foreach ($products as $product): ?>
                             <div class="col-md-3 w3ls_w3l_banner_left">
                                 <div class="hover14 column">
@@ -86,7 +89,7 @@ use yii\helpers\Url;
                                             <figure>
                                                 <div class="snipcart-item block">
                                                     <div class="snipcart-thumb">
-                                                        <a href="<?= Url::to(['product/view', 'id' => $product->id]) ?>">
+                                                        <a href="<?= Url::to(['product/detail', 'id' => $product->id]) ?>">
                                                             <?= Html::img("@web/products/{$product->img}", ['alt' => $product->title]) ?>
                                                         </a>		
                                                         <p><?= $product->title ?></p>

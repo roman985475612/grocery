@@ -36,6 +36,7 @@ class AppAsset extends AssetBundle
         'js/move-top.js',
         'js/minicart.js',
         'js/easing.js',
+        'js/okzoom.js',
         'js/main.js',
     ];
     public $depends = [

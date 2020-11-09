@@ -3,8 +3,9 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
+use yii\web\NotFoundHttpException;
 
-class Category extends ActiveRecord
+class Category extends AbstractModel
 {
     public static function tableName()
     {

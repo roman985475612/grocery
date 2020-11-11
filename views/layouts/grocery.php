@@ -34,13 +34,10 @@ AppAsset::register($this);
 			</form>
 		</div>
 		<div class="product_list_header">  
-			<form action="#" method="post" class="last">
-                <fieldset>
-                    <input type="hidden" name="cmd" value="_cart" />
-                    <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="View your cart" class="button" />
-                </fieldset>
-            </form>
+			<button type="button" data-toggle="modal" data-target="#cart" class="button">
+				$0
+			</button>
+			<?= $this->render('inc/_cart') ?>
 		</div>
 		<div class="w3l_header_right">
 			<ul>

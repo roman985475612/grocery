@@ -58,6 +58,7 @@ $config = [
                 'category/<id:\d+>'                 => 'product/list',
                 'product/<id:\d+>'                  => 'product/detail',
                 'search'                            => 'product/search',
+                'cart/add/<product_id:\d+>'         => 'cart/add',
             ],
         ],
     ],

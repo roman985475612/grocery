@@ -68,3 +68,24 @@ paypal.minicart.cart.on('checkout', function (evt) {
         evt.preventDefault();
     }
 });
+
+
+// Cart
+$(function() {
+    $('.add-to-cart').on('click', function () {
+        let id = $(this).data('id');
+        $.ajax({
+            url: 'cart/add',
+            data: {product_id: id},
+            type: 'GET',
+            success: (res) => {
+                console.log(res)
+            },
+            error: (res) => {
+                alert('Error!!!')
+            }
+        })
+    
+        return false;
+    })
+})

@@ -41,4 +41,12 @@ class Cart extends Model
 
         return $obj;
     }
+
+    public static function remove()
+    {
+        $session = Yii::$app->session;
+        $session->remove('cart');       
+        $session->remove('cart.qty');       
+        $session->remove('cart.sum');       
+    }
 }

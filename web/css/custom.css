@@ -3,6 +3,10 @@ img {
     height: auto;
 }
 
+.cart-img {
+    height: 50;
+}
+
 .pagination li a,
 .pagination li a:hover,
 .pagination li span {
@@ -28,10 +32,6 @@ img {
     width: 144px;
 }
 
-.close span {
-    color: black;
-}
-
 .snipcart-details .button {
     font-size: 14px;
     color: #fff;
@@ -49,4 +49,17 @@ img {
 
 .snipcart-details .button:hover {
     background-color: #84c639;
+}
+
+.close span,
+.modal table > thead > tr > th,
+.modal table > tbody > tr > td,
+.modal table > tfoot > tr > td {
+    color: black;
+}
+
+table span.glyphicon {
+    color: rgb(145, 16, 16);
+    top: 0;
+    cursor: pointer;
 }

@@ -6,6 +6,7 @@ use yii\helpers\Url;
 
 AppAsset::register($this);
 
+$session = \Yii::$app->session;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -34,10 +35,27 @@ AppAsset::register($this);
 			</form>
 		</div>
 		<div class="product_list_header">  
-			<button type="button" data-toggle="modal" data-target="#cart" class="button">
-				$0
+			<button type="button" data-toggle="modal" data-target="#modal-cart" class="button show-cart-btn">
+				$<span class="cart-sum"><?= $session['cart.sum'] ?? '0' ?></span>
 			</button>
-			<?= $this->render('inc/_cart') ?>
+			<div class="modal fade" id="modal-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Cart</h4>
+					</div>
+					<div class="modal-body">
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<a href="<?= Url::to(['cart/view']) ?>" class="btn btn-success">Order</a>
+						<a id="cart-destroy" href="<?= Url::to(['cart/destroy']) ?>" class="btn btn-danger">Clear cart</a>
+					</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="w3l_header_right">
 			<ul>

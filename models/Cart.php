@@ -3,50 +3,96 @@
 namespace app\models;
 
 use Yii;
-use yii\base\Model;
 
-class Cart extends Model
+class Cart
 {
-    public static function add(Product $product, int $qty = 1)
-    {
-        $sum = $product->price * $qty;
+    public static $instance = null;
 
-        if (isset($_SESSION['cart'][$product->id])) {
-            $_SESSION['cart'][$product->id]['qty'] += $qty;
-            $_SESSION['cart'][$product->id]['sum'] += $sum;
-        } else {
-            $_SESSION['cart'][$product->id] = [
+    private function __construct() {
+        $session = Yii::$app->session;
+        $session->open();
+
+        if (!$session->has('cart')) {
+            $session['cart'] = new \ArrayObject;
+        }
+
+        if (!$session->has('cart.qty')) {
+            $session['cart.qty'] = 0.00;
+        }
+
+        if (!$session->has('cart.sum')) {
+            $session['cart.sum'] = 0.00;
+        }
+    }
+
+    public function cart()
+    {
+        return Yii::$app->session->get('cart');
+    }
+
+    public function total_qty()
+    {
+        return Yii::$app->session->get('cart.qty');
+    }
+
+    public function total_sum()
+    {
+        return Yii::$app->session->get('cart.sum');
+    }
+
+    public static function getInstance(): self
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    private function createItem(Product $product)
+    {
+        if (!isset(Yii::$app->session['cart'][$product->id])) {
+            Yii::$app->session['cart'][$product->id] = [
                 'title' => $product->title, 
                 'price' => $product->price,
                 'img'   => $product->img,
-                'qty'   => $qty,
-                'sum'   => $sum,
+                'qty'   => 0,
+                'sum'   => 0,
             ];
         }
-
-        if (isset($_SESSION['cart.qty'])) {
-            $_SESSION['cart.qty'] += $qty;
-        } else {
-            $_SESSION['cart.qty'] = $qty;
-        }
-
-        if (isset($_SESSION['cart.sum'])) {
-            $_SESSION['cart.sum'] += $sum;
-        } else {
-            $_SESSION['cart.sum'] = $sum;
-        }
-
-
-        $obj = new static();
-
-        return $obj;
     }
 
-    public static function remove()
+    public function add(Product $product, int $qty = 1)
     {
-        $session = Yii::$app->session;
-        $session->remove('cart');       
-        $session->remove('cart.qty');       
-        $session->remove('cart.sum');       
+        $this->createItem($product);
+
+        $sum = $product->price * $qty;
+
+        Yii::$app->session['cart'][$product->id]['qty'] += $qty;
+        Yii::$app->session['cart'][$product->id]['sum'] += $sum;
+
+        Yii::$app->session['cart.qty'] += $qty;
+        Yii::$app->session['cart.sum'] += $sum;
+    }
+
+    public function delItem($product_id)
+    {
+        if (!isset(Yii::$app->session['cart'][$product_id]))
+            return false;
+
+        $qty = Yii::$app->session['cart'][$product_id]['qty'];
+        $sum = Yii::$app->session['cart'][$product_id]['sum'];
+
+        Yii::$app->session['cart.qty'] -= $qty;
+        Yii::$app->session['cart.sum'] -= $sum;
+
+        unset(Yii::$app->session['cart'][$product_id]);
+    }
+
+    public function remove()
+    {
+        Yii::$app->session->remove('cart');       
+        Yii::$app->session->remove('cart.qty');       
+        Yii::$app->session->remove('cart.sum'); 
     }
 }

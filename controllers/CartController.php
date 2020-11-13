@@ -11,11 +11,10 @@ class CartController extends AppController
 
     public function actionShow()
     {
-        $session = Yii::$app->session;
-        $session->open();
+        $cart = Cart::getInstance();
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderPartial('//layouts/inc/_cart-table', compact('session'));
+            return $this->renderPartial('//layouts/inc/_cart-table', compact('cart'));
         }
     }
 
@@ -27,24 +26,40 @@ class CartController extends AppController
             return false;
         }
 
-        $session = Yii::$app->session;
-        $session->open();
-
-        Cart::add($product);
+        $cart = Cart::getInstance();
+        $cart->add($product);
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderPartial('//layouts/inc/_cart-table', compact('session'));
+            return $this->renderPartial('//layouts/inc/_cart-table', compact('cart'));
         }
 
         return $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionDestroy()
+    public function actionDelItem($id)
     {
-        Cart::remove();
+        $cart = Cart::getInstance();
+        $cart->delItem($id);
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderPartial('//layouts/inc/_cart-table', compact('session'));
+            return $this->renderPartial('//layouts/inc/_cart-table', compact('cart'));
         }
+    }
+
+    public function actionRemove()
+    {
+        $cart = Cart::getInstance();
+        $cart->remove();
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderPartial('//layouts/inc/_cart-table', compact('cart'));
+        }
+    }
+
+    public function actionList()
+    {
+        $this->setMeta('Оформление заказа');
+
+        return $this->render('list');
     }
 }

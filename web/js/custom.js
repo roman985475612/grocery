@@ -87,7 +87,7 @@ $(function() {
         modalCart.modal()
     }
 
-    $('.show-cart-btn').on('click', function () {
+    $( '.show-cart-btn').on('click', function () {
         let id = $(this).data('id');
         $.ajax({
             url: 'cart/show',
@@ -107,7 +107,7 @@ $(function() {
 
     })
 
-    $('.add-to-cart').on('click', function () {
+    $( '.add-to-cart').on('click', function () {
         let id = $(this).data('id');
         $.ajax({
             url: 'cart/add',
@@ -127,9 +127,30 @@ $(function() {
         return false;
     })
 
-    $('#cart-destroy').on('click', function () {
+    $( '.product_list_header .modal-body' ).on( 'click', '.del-item', function () {
+        let id = $(this).data('id')
+
         $.ajax({
-            url: 'cart/destroy',
+            url: 'cart/del-item',
+            data: {id: id},
+            type: 'GET',
+            success: (res) => {
+                if (!res) alert('Ошибка')
+
+                showCart(res)
+                showCartSum()
+            },
+            error: (res) => {
+                alert('Error!!!')
+            }
+        })
+    
+        // return false;
+    })
+
+    $('#cart-remove').on('click', function () {
+        $.ajax({
+            url: 'cart/remove',
             type: 'GET',
             success: (res) => {
                 if (!res) alert('Ошибка')

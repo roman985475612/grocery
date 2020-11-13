@@ -46,12 +46,12 @@ $session = \Yii::$app->session;
 						<h4 class="modal-title" id="myModalLabel">Cart</h4>
 					</div>
 					<div class="modal-body">
-						
+
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<a href="<?= Url::to(['cart/view']) ?>" class="btn btn-success">Order</a>
-						<a id="cart-destroy" href="<?= Url::to(['cart/destroy']) ?>" class="btn btn-danger">Clear cart</a>
+						<a href="<?= Url::to(['cart/list']) ?>" class="btn btn-success">Order</a>
+						<a href="<?= Url::to(['cart/remove']) ?>" class="btn btn-danger"  id="cart-remove">Clear cart</a>
 					</div>
 					</div>
 				</div>

@@ -50,29 +50,8 @@ $(window).load(function(){
   });
 });
 
-//
-paypal.minicart.render();
-paypal.minicart.cart.on('checkout', function (evt) {
-    var items = this.items(),
-        len = items.length,
-        total = 0,
-        i;
-
-    // Count the number of each item in the cart
-    for (i = 0; i < len; i++) {
-        total += items[i].get('quantity');
-    }
-
-    if (total < 3) {
-        alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-        evt.preventDefault();
-    }
-});
-
-
 // Cart
 $(function() {
-
     function showCartSum() {
         let cartSum = $('#cart-sum').text()
         
@@ -85,6 +64,12 @@ $(function() {
         const modalCart = $('#modal-cart')
         modalCart.find('.modal-body').html(cart)
         modalCart.modal()
+    }
+
+    function reloadedCartList() {
+        if (document.location.pathname == '/cart/list') {
+            document.location.reload();
+        }
     }
 
     $( '.show-cart-btn').on('click', function () {
@@ -132,11 +117,12 @@ $(function() {
 
         $.ajax({
             url: 'cart/del-item',
-            data: {id: id},
+            data: {product_id: id},
             type: 'GET',
             success: (res) => {
                 if (!res) alert('Ошибка')
 
+                reloadedCartList()
                 showCart(res)
                 showCartSum()
             },
@@ -155,8 +141,51 @@ $(function() {
             success: (res) => {
                 if (!res) alert('Ошибка')
 
+                reloadedCartList()
                 showCart(res)
                 showCartSum()
+            },
+            error: (res) => {
+                alert('Error!!!')
+            }
+        })
+    
+        return false;
+    })
+
+    $('.value-minus').on('click', function () {
+        let id = $(this).data('id');
+        $.ajax({
+            dataType: "json",
+            url: 'cart/qty-minus',
+            data: {product_id: id},
+            type: 'GET',
+            success: (res) => {
+                if (!res) alert('Ошибка')
+                $("#" + id + ".qty").text(res.list[id].qty)
+                $("#" + id + ".sum").text("$" + res.list[id].sum)
+                $(".total-sum").text("$" + res.total_sum)
+            },
+            error: (res) => {
+                alert('Error!!!')
+            }
+        })
+    
+        return false;
+    })
+
+    $('.value-plus').on('click', function () {
+        let id = $(this).data('id');
+        $.ajax({
+            dataType: "json",
+            url: 'cart/qty-plus',
+            data: {product_id: id},
+            type: 'GET',
+            success: (res) => {
+                if (!res) alert('Ошибка')
+                $("#" + id + ".qty").text(res.list[id].qty)
+                $("#" + id + ".sum").text("$" + res.list[id].sum)
+                $(".total-sum").text("$" + res.total_sum)
             },
             error: (res) => {
                 alert('Error!!!')

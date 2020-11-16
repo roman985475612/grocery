@@ -18,15 +18,23 @@ class CartController extends AppController
         }
     }
 
+    public function actionList()
+    {
+        $cart = Cart::getInstance();
+        $this->setMeta('Оформление заказа');
+
+        return $this->render('list', compact('cart'));
+    }
+
     public function actionAdd($product_id)
     {
         $product = Product::findOne($product_id);
-        
         if (empty($product)) {
             return false;
         }
 
         $cart = Cart::getInstance();
+        $cart->createItem($product);
         $cart->add($product);
 
         if (Yii::$app->request->isAjax) {
@@ -36,14 +44,50 @@ class CartController extends AppController
         return $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionDelItem($id)
+    public function actionQtyPlus($product_id)
+    {
+        $product = Product::findOne($product_id);
+        if (empty($product)) {
+            return false;
+        }
+
+        $cart = Cart::getInstance();
+        $cart->add($product);
+
+        if (Yii::$app->request->isAjax) {
+            return json_encode($cart->all());
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionQtyMinus($product_id)
+    {
+        $product = Product::findOne($product_id);
+        if (empty($product)) {
+            return false;
+        }
+
+        $cart = Cart::getInstance();
+        $cart->subtrack($product);
+
+        if (Yii::$app->request->isAjax) {
+            return json_encode($cart->all());
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionDelItem($product_id)
     {
         $cart = Cart::getInstance();
-        $cart->delItem($id);
+        $cart->delItem($product_id);
 
         if (Yii::$app->request->isAjax) {
             return $this->renderPartial('//layouts/inc/_cart-table', compact('cart'));
         }
+
+        return $this->render('list', compact('cart'));
     }
 
     public function actionRemove()
@@ -54,12 +98,5 @@ class CartController extends AppController
         if (Yii::$app->request->isAjax) {
             return $this->renderPartial('//layouts/inc/_cart-table', compact('cart'));
         }
-    }
-
-    public function actionList()
-    {
-        $this->setMeta('Оформление заказа');
-
-        return $this->render('list');
     }
 }

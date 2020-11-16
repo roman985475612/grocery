@@ -63,3 +63,7 @@ table span.glyphicon {
     top: 0;
     cursor: pointer;
 }
+
+.checkout-left-basket .total {
+    font-weight: bold;
+}

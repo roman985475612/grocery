@@ -30,6 +30,25 @@ class Cart
         return Yii::$app->session->get('cart');
     }
 
+    public function all()
+    {
+        $data['list'] = Yii::$app->session->get('cart');
+        $data['total_qty'] = Yii::$app->session->get('cart.qty');
+        $data['total_sum'] = Yii::$app->session->get('cart.sum');
+
+        return $data;
+    }
+
+    public function list()
+    {
+        return Yii::$app->session->get('cart');
+    }
+
+    public function item($product_id)
+    {
+        return Yii::$app->session->get('cart')[$product_id];
+    }
+
     public function total_qty()
     {
         return Yii::$app->session->get('cart.qty');
@@ -38,6 +57,11 @@ class Cart
     public function total_sum()
     {
         return Yii::$app->session->get('cart.sum');
+    }
+
+    public function total_count()
+    {
+        return count(Yii::$app->session->get('cart'));
     }
 
     public static function getInstance(): self
@@ -49,7 +73,7 @@ class Cart
         return self::$instance;
     }
 
-    private function createItem(Product $product)
+    public function createItem(Product $product)
     {
         if (!isset(Yii::$app->session['cart'][$product->id])) {
             Yii::$app->session['cart'][$product->id] = [
@@ -64,8 +88,6 @@ class Cart
 
     public function add(Product $product, int $qty = 1)
     {
-        $this->createItem($product);
-
         $sum = $product->price * $qty;
 
         Yii::$app->session['cart'][$product->id]['qty'] += $qty;
@@ -73,6 +95,20 @@ class Cart
 
         Yii::$app->session['cart.qty'] += $qty;
         Yii::$app->session['cart.sum'] += $sum;
+    }
+
+    public function subtrack(Product $product, int $qty = 1)
+    {   
+        if (Yii::$app->session['cart'][$product->id]['qty'] == 0)
+            return null;
+
+        $sum = $product->price * $qty;
+
+        Yii::$app->session['cart'][$product->id]['qty'] -= $qty;
+        Yii::$app->session['cart'][$product->id]['sum'] -= $sum;
+
+        Yii::$app->session['cart.qty'] -= $qty;
+        Yii::$app->session['cart.sum'] -= $sum;
     }
 
     public function delItem($product_id)

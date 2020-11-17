@@ -30,7 +30,6 @@ class AppAsset extends AssetBundle
         'css/custom.css',
     ];
     public $js = [
-        'js/jquery-1.11.1.min.js',
         'js/jquery.flexslider.js',
         'js/bootstrap.min.js',
         'js/move-top.js',

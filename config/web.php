@@ -16,6 +16,16 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,
+                    'js' => [
+                        'js/jquery-1.11.1.min.js',
+                    ],
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'hmlfn7J9B88t6hv-5vc_BUXjjyeH2j7Y',
@@ -63,6 +73,11 @@ $config = [
                 'cart/qty-minus/<product_id:\d+>'   => 'cart/qty-minus',
                 'cart/del-item/<product_id:\d+>'    => 'cart/del-item',
             ],
+        ],
+    ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
         ],
     ],
     'params' => $params,

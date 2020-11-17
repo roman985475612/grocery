@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Cart;
+use app\models\Order;
+use app\models\OrderProduct;
 use app\models\Product;
 
 class CartController extends AppController
@@ -21,9 +23,21 @@ class CartController extends AppController
     public function actionList()
     {
         $cart = Cart::getInstance();
+        $order = new Order;
+        
+        if (Yii::$app->request->isPost) {
+            if ($order->add($cart)) {
+                Yii::$app->session->setFlash('success', 'Ваш заказ принят');
+                $cart->remove();
+                return $this->goHome();
+            }
+            
+            Yii::$app->session->setFlash('error', 'Ошибка оформления заказа');
+        }
+
         $this->setMeta('Оформление заказа');
 
-        return $this->render('list', compact('cart'));
+        return $this->render('list', compact('cart', 'order'));
     }
 
     public function actionAdd($product_id)

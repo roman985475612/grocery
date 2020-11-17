@@ -1,10 +1,12 @@
 <?php
 use app\components\OfferWidget;
+use yii\bootstrap\Alert;
 ?>
 <!-- banner -->
 <div class="banner">
-
     <?= $this->render('//layouts/inc/_sidebar') ?>
+
+    <?= Alert::widget() ?>
 
     <div class="w3l_banner_nav_right">
         <section class="slider">

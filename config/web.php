@@ -35,8 +35,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass'   => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl'        => 'admin/auth/login',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -72,12 +73,18 @@ $config = [
                 'cart/qty-plus/<product_id:\d+>'    => 'cart/qty-plus',
                 'cart/qty-minus/<product_id:\d+>'   => 'cart/qty-minus',
                 'cart/del-item/<product_id:\d+>'    => 'cart/del-item',
+                'admin'                             => 'admin/main/index',
+                'login'                             => 'admin/auth/login',
+                'logout'                            => 'admin/auth/logout',
+                'register'                          => 'admin/auth/register',
             ],
         ],
     ],
     'modules' => [
         'admin' => [
-            'class' => 'app\modules\admin\Module',
+            'class'        => 'app\modules\admin\Module',
+            'layout'       => 'admin',
+            'defaultRoute' => 'main/index',
         ],
     ],
     'params' => $params,

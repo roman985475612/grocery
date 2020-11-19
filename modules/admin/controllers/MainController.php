@@ -16,6 +16,10 @@ class MainController extends AppAdminController
         $product_count = Product::find()->count();
         $category_count = Category::find()->count();
 
+        $this->title = 'Admin';
+        $this->breadcrumbs[] = 'Main';
+        $this->setMeta('Admin', 'Admin page');
+        
         return $this->render('index', compact('user_count', 'order_count', 'product_count', 'category_count'));
     }
 }

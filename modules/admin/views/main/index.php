@@ -1,9 +1,3 @@
-<?php
-use yii\helpers\Url;
-
-$this->params['admin-breadcrumbs'][Url::to(['main/index'])] = 'Main';
-$this->params['admin-breadcrumbs'][null] = 'Index';
-?>
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-6">

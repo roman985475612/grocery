@@ -14,7 +14,7 @@ AdminAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->context->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -165,12 +165,12 @@ AdminAsset::register($this);
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav id="main-menu" class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Starter Pages
@@ -179,7 +179,7 @@ AdminAsset::register($this);
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Active Page</p>
                 </a>
@@ -201,6 +201,15 @@ AdminAsset::register($this);
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= Url::toRoute('/admin/orders') ?>" class="nav-link">
+              <i class="nav-icon fas fa-file-invoice"></i>
+              <p>
+                Orders
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -215,7 +224,7 @@ AdminAsset::register($this);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
+            <h1 class="m-0 text-dark"><?= $this->context->title ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <?= $this->render('inc/_breadcrumb') ?>

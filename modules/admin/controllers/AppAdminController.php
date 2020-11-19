@@ -7,6 +7,15 @@ use yii\web\Controller;
 
 class AppAdminController extends Controller
 {
+    public $title;
+    public $breadcrumbs = [];
+    
+    protected function setMeta($keywords = null, $description = null)
+    {
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+        $this->view->registerMetaTag(['name' => 'description', 'content' => $description]);
+    }
+
     public function behaviors()
     {
         return [

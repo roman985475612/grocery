@@ -42,6 +42,11 @@ class Order extends ActiveRecord
         ];
     }
 
+    public function getProducts()
+    {
+        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
+    }
+
     public function attributeLabels()
     {
         return [
@@ -51,6 +56,16 @@ class Order extends ActiveRecord
             'address' => 'Адрес',
             'note'    => 'Комментарий',
         ];
+    }
+
+    public function getCreatedAt()
+    {
+        return date('F j, Y', strtotime($this->created_at));
+    }
+
+    public function getUpdatedAt()
+    {
+        return date('F j, Y', strtotime($this->updated_at));
     }
 
     public function add($cart)
@@ -70,5 +85,13 @@ class Order extends ActiveRecord
             
             return false;         
         }
+    }
+
+    public function remove() {
+        
+        foreach ($this->products as $product) {
+            $product->delete();
+        }
+        return $this->delete();
     }
 }

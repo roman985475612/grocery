@@ -16,8 +16,11 @@ class AdminAsset extends AssetBundle
         'adminlte/css/adminlte.min.css',
     ];
     public $js = [
-        'adminlte/bootstrap/js/bootstrap.bundle.min.js',
+        'https://code.jquery.com/jquery-3.5.1.min.js',
+        'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js',
+        'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js',
         'adminlte/js/adminlte.min.js',
+        'adminlte/js/custom.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

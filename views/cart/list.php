@@ -2,6 +2,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 ?>
 <!-- products-breadcrumb -->
 <?= $this->render('//layouts/inc/_breadcrumb', [
@@ -94,7 +96,9 @@ use yii\helpers\Url;
 						<?= $form->field($order, 'email') ?>
 						<?= $form->field($order, 'phone') ?>
 						<?= $form->field($order, 'address') ?>
-						<?= $form->field($order, 'note')->textarea(['rows' => '5']) ?>
+						<?= $form->field($order, 'note')->widget(CKEditor::class, [
+							'editorOptions' => ElFinder::ckeditorOptions('elfinder',[/* Some CKEditor Options */]),						
+						]) ?>
 						<?= Html::submitButton('Заказать', [
 							'class' => 'submit check_out',
 						]) ?>

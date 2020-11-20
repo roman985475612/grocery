@@ -73,15 +73,33 @@ $config = [
                 'cart/qty-plus/<product_id:\d+>'    => 'cart/qty-plus',
                 'cart/qty-minus/<product_id:\d+>'   => 'cart/qty-minus',
                 'cart/del-item/<product_id:\d+>'    => 'cart/del-item',
+
+                // Admin & auth
                 'admin'                             => 'admin/main/index',
                 'login'                             => 'admin/auth/login',
                 'logout'                            => 'admin/auth/logout',
                 'register'                          => 'admin/auth/register',
+
+                // Order
                 'admin/order/<id:\d+>/edit'         => 'admin/order/edit',
                 'admin/order/<id:\d+>/updata'       => 'admin/order/update',
                 'admin/order/<id:\d+>/delete'       => 'admin/order/delete',
                 'admin/order/<id:\d+>'              => 'admin/order/view',
                 'admin/orders'                      => 'admin/order/index',
+                
+                // Category
+                'admin/category/<id:\d+>/edit'    => 'admin/category/edit',
+                'admin/category/<id:\d+>/delete'  => 'admin/category/delete',
+                'admin/category/<id:\d+>'         => 'admin/category/view',
+                'admin/category/new'              => 'admin/category/create',
+                'admin/categories'                => 'admin/category/index',
+
+                // Goods
+                'admin/product/<id:\d+>/edit'    => 'admin/product/edit',
+                'admin/product/<id:\d+>/delete'  => 'admin/product/delete',
+                'admin/product/<id:\d+>'         => 'admin/product/view',
+                'admin/product/new'              => 'admin/product/create',
+                'admin/products'                 => 'admin/product/index',
             ],
         ],
     ],
@@ -91,6 +109,16 @@ $config = [
             'layout'       => 'admin',
             'defaultRoute' => 'main/index',
         ],
+    ],
+    'controllerMap' => [
+        'elfinder' => [
+			'class' => 'mihaildev\elfinder\PathController',
+			'access' => ['@'],
+			'root' => [
+				'path' => 'uploads/files',
+				'name' => 'Files'
+			],
+		]
     ],
     'params' => $params,
 ];

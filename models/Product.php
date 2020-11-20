@@ -11,15 +11,30 @@ class Product extends AbstractModel
     {
         return '{{%product}}';
     }
+    
+    public function rules()
+    {
+        return [
+            [['title', 'content'], 'required'],
+            [['category_id', 'is_offer'], 'integer'],
+            [['price', 'old_price'], 'number'],
+            [['keywords', 'description', 'img'], 'string'],
+        ];
+    }
 
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
+    public static function all()
+    {
+        return static::find()->with('category')->all();
+    }
+
     public static function getListByCategory($category)
     {
-        $query = Product::find()->where(['category_id' => $category->id]);
+        $query = static::find()->where(['category_id' => $category->id]);
 
         $pagination = new Pagination([
             'totalCount'     => $query->count(),
@@ -40,7 +55,7 @@ class Product extends AbstractModel
 
     public static function getListBySearch($q)
     {
-        $query = Product::find()->where(['like', 'title', $q]);
+        $query = static::find()->where(['like', 'title', $q]);
 
         $pagination = new Pagination([
             'totalCount'     => $query->count(),
@@ -61,9 +76,9 @@ class Product extends AbstractModel
 
     public static function getOffers()
     {
-        return Product::find()
-        ->where(['is_offer' => 1])
-        ->limit(4)
-        ->all();
+        return static::find()
+                        ->where(['is_offer' => 1])
+                        ->limit(4)
+                        ->all();
     }
 }

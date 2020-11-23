@@ -20,4 +20,9 @@ use yii\widgets\ActiveForm;
     </div>
     <?= $form->field($model, 'keywords', ['template' => '{input}'])->textInput(['placeholder' => 'Keywords']) ?>
     <?= $form->field($model, 'description', ['template' => '{input}'])->textInput(['placeholder' => 'Description']) ?>
+    <?php if (!empty($model->img)): ?>
+        <img class="img-thumbnail mb-2" src="<?= $model->getImage() ?>">
+    <?php endif ?>
+    <?= $form->field($model, 'img', ['template' => '{input}'])->fileInput(['placeholder' => 'Image']) ?>
+    <?//= yii\helpers\Html::submitButton('Submit') ?>
 <?php ActiveForm::end() ?>

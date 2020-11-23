@@ -30,7 +30,6 @@ class ProductController extends AppAdminController
     public function actionCreate()
     {
         $model = new Product;
-        
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Item #'.$model->id.' has been created!');
@@ -45,6 +44,7 @@ class ProductController extends AppAdminController
     {
         $model = Product::findOne($id);
         if (Yii::$app->request->isPost) {
+            $model->old_img = $model->img;
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Item #'.$model->id.' has been updated!');
                 return true;
@@ -58,8 +58,8 @@ class ProductController extends AppAdminController
     {
         if (Yii::$app->request->isPost) {
             $model = Product::findOne($id);
-            Yii::$app->session->setFlash('success', 'Item #'.$model->id.' has been deleted!');
             $model->delete();
+            Yii::$app->session->setFlash('success', 'Item #'.$id.' has been deleted!');
         }
     }
 }

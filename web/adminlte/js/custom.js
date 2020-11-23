@@ -52,9 +52,26 @@ jQuery(function($) {
             showModal(title, data, footer)
         })
 
-        $('#actionBtn').on('click', function () {
-            $.post(url, $('form').serializeArray(), function(data, status) {
-                location.reload()
+        $('#actionBtn').on('click', function ( event ) {
+            let mainForm = document.querySelector('.modal-body form')
+            var formData = new FormData(mainForm)
+            
+            if ( $('.modal-body form input[type=file]').length ) {
+                let file = $('.modal-body form input[type=file]')[0].files[0]
+                formData.append('img', file)    
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                dataType : 'json',
+                success: function(msg){
+                    location.reload()
+                }
             })
         })
 
@@ -71,9 +88,26 @@ jQuery(function($) {
             showModal(title, data, footer)
         })
 
-        $('#actionBtn').on('click', function () {
-            $.post(url, $('form').serializeArray(), function(data, status) {
-                location.reload()
+        $('#actionBtn').on('click', function ( event ) {
+            let mainForm = document.querySelector('.modal-body form')
+            var formData = new FormData(mainForm)
+            
+            if ( $('.modal-body form input[type=file]').length ) {
+                let file = $('.modal-body form input[type=file]')[0].files[0]
+                formData.append('img', file)    
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                dataType : 'json',
+                success: function(msg){
+                    location.reload()
+                }
             })
         })
 

@@ -50,7 +50,7 @@ use yii\helpers\Url;
                     <?php foreach ($model as $product): ?>
                     <tr>
                         <td><?= $product->id ?></td>
-                        <td><img class="img-thumbnail" style="height: 50px" src="/images/<?= $product->img ?>"></td>
+                        <td><img class="img-thumbnail" style="height: 50px" src="<?= $product->getImage() ?>"></td>
                         <td><?= $product->category->title ?></td>
                         <td><?= $product->title ?></td>
                         <td><?= $product->price ?></td>

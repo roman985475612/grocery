@@ -19,7 +19,9 @@ use yii\helpers\Url;
                     <div class="snipcart-item block" >
                         <div class="snipcart-thumb">
                             <a href="<?= Url::to(['product/detail', 'id' => $product->id]) ?>">
-                                <?= Html::img("@web/products/{$product->img}", ['alt' => $product->title]) ?>
+                                <?= Html::img($product->getImage(), [
+                                    'alt'   => $product->title,
+                                ]) ?>
                             </a>		
                             <p><?= $product->title ?></p>
                             <h4>

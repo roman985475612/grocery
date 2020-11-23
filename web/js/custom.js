@@ -52,6 +52,7 @@ $(window).load(function(){
 
 // Cart
 $(function() {
+    
     function showCartSum() {
         let cartSum = $('#cart-sum').text()
         

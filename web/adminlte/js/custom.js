@@ -18,6 +18,13 @@ jQuery(function($) {
         $('#exampleModal').modal('show')
     }
 
+    $('.modal-body').on('change', '.custom-file-input', function () {
+        let file = $('.custom-file-input')[0].files[0]
+        $('.custom-file-label').text(file.name);
+        let UrlImg = URL.createObjectURL(file)
+        $('#uploadImg').attr('src', UrlImg)
+    })
+
     // Actions
     $('.action-view').on('click', function () {
         var id = $(this).data('id')
@@ -78,7 +85,7 @@ jQuery(function($) {
         return false
     })
 
-    $('.action-edit').on('click', function () {
+    $('.action-edit').on('click', function () {    
         let id = $(this).data('id')
         let url = $(this).attr('href')
 

@@ -20,9 +20,18 @@ use yii\widgets\ActiveForm;
     </div>
     <?= $form->field($model, 'keywords', ['template' => '{input}'])->textInput(['placeholder' => 'Keywords']) ?>
     <?= $form->field($model, 'description', ['template' => '{input}'])->textInput(['placeholder' => 'Description']) ?>
-    <?php if (!empty($model->img)): ?>
-        <img class="img-thumbnail mb-2" src="<?= $model->getImage() ?>">
-    <?php endif ?>
-    <?= $form->field($model, 'img', ['template' => '{input}'])->fileInput(['placeholder' => 'Image']) ?>
+    
+    <img 
+        id="uploadImg" 
+        class="img-thumbnail mb-2"
+        src="<?= $model->getImage() ?>"
+    >
+    
+    <?//= $form->field($model, 'img', ['template' => '{input}'])->fileInput(['placeholder' => 'Image']) ?>
+
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile" name="Product[img]">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
     <?//= yii\helpers\Html::submitButton('Submit') ?>
 <?php ActiveForm::end() ?>

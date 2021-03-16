@@ -26,11 +26,11 @@ $session = \Yii::$app->session;
 <!-- header -->
 	<div class="agileits_header">
 		<div class="w3l_offers">
-			<a href="products.html">Today's special Offers !</a>
+			<a href="<?= Url::to(['product/all']) ?>">Today's special Offers !</a>
 		</div>
 		<div class="w3l_search">
 			<form action="<?= Url::to(['product/search']) ?>" method="GET">
-				<input type="text" name="q">
+				<input type="text" name="q" placeholder="Search a product...">
 				<input type="submit" value=" ">
 			</form>
 		</div>

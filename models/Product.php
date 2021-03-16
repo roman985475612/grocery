@@ -40,6 +40,27 @@ class Product extends AbstractModel
         return static::find()->with('category')->all();
     }
 
+    public static function getList()
+    {
+        $query = static::find()->with('category');
+
+        $pagination = new Pagination([
+            'totalCount'     => $query->count(),
+            'pageSize'       => 4,
+            'forcePageParam' => false,
+            'pageSizeParam'  => false,
+        ]);
+
+        $objects = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return [
+            'objects'    => $objects,
+            'pagination' => $pagination,
+        ];
+    }
+
     public static function getListByCategory($category)
     {
         $query = static::find()->where(['category_id' => $category->id]);

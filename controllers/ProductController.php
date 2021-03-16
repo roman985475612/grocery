@@ -11,7 +11,7 @@ class ProductController extends AppController
 {
     public function actionIndex()
     {
-        $data = Product::all();
+        $data = Product::getList();
 
         $this->setMeta('Branded Foods', 'Branded Foods', 'Branded Foods');
 

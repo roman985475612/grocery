@@ -6,8 +6,6 @@ use yii\bootstrap\Alert;
 <div class="banner">
     <?= $this->render('//layouts/inc/_sidebar') ?>
 
-    <?= Alert::widget() ?>
-
     <div class="w3l_banner_nav_right">
         <section class="slider">
             <div class="flexslider">

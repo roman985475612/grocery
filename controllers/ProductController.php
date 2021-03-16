@@ -9,6 +9,20 @@ use yii\helpers\Html;
 
 class ProductController extends AppController
 {
+    public function actionIndex()
+    {
+        $data = Product::all();
+
+        $this->setMeta('Branded Foods', 'Branded Foods', 'Branded Foods');
+
+        return $this->render('list', [
+            'category'   => 'Branded Foods',
+            'products'   => $data['objects'],
+            'pagination' => $data['pagination'],
+            'topic'      => 'Branded Foods',
+        ]);
+    }
+
     public function actionList($id)
     {
         $category = Category::getObjectOr404($id, 'Категория не найдена!');

@@ -64,8 +64,8 @@ $session = \Yii::$app->session;
 					<div class="mega-dropdown-menu">
 						<div class="w3ls_vegetables">
 							<ul class="dropdown-menu drp-mnu">
-								<li><a href="login.html">Login</a></li> 
-								<li><a href="login.html">Sign Up</a></li>
+								<li><a href="<?= Url::to(['admin/auth/login']) ?>">Login</a></li> 
+								<li><a href="<?= Url::to(['admin/auth/register']) ?>">Register</a></li>
 							</ul>
 						</div>                  
 					</div>	
@@ -73,7 +73,7 @@ $session = \Yii::$app->session;
 			</ul>
 		</div>
 		<div class="w3l_header_right1">
-			<h2><a href="mail.html">Contact Us</a></h2>
+			<h2><a href="<?= Url::to(['home/contact']) ?>">Contact Us</a></h2>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -84,10 +84,10 @@ $session = \Yii::$app->session;
 			</div>
 			<div class="w3ls_logo_products_left1">
 				<ul class="special_items">
-					<li><a href="events.html">Events</a><i>/</i></li>
-					<li><a href="about.html">About Us</a><i>/</i></li>
-					<li><a href="products.html">Best Deals</a><i>/</i></li>
-					<li><a href="services.html">Services</a></li>
+					<li><a href="<?= Url::to(['home/events']) ?>">Events</a><i>/</i></li>
+					<li><a href="<?= Url::to(['home/about']) ?>">About Us</a><i>/</i></li>
+					<li><a href="<?= Url::to(['product/index']) ?>">Best Deals</a><i>/</i></li>
+					<li><a href="<?= Url::to(['home/services']) ?>">Services</a></li>
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left1">

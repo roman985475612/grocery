@@ -19,6 +19,24 @@ class m201103_084234_create_category_table extends Migration
             'description' => $this->string(255),
             'keywords'    => $this->string(255),
         ]);
+
+        $this->batchInsert('{{%category}}', ['id', 'parent_id', 'title'], [
+            [1, 0, 'Branded Foods'],
+            [2, 0, 'Househols'],
+            [3, 0, 'Veggiets & Fruits'],
+            [4, 0, 'Kitchen'],
+            [5, 0, 'Short Codes'],
+            [6, 0, 'Beverages'],
+            [7, 0, 'Pet Food'],
+            [8, 0, 'Frozen Foods'],
+            [9, 0, 'Bread & Bakery'],
+            [10, 3, 'Vegetables'],
+            [11, 3, 'Fruits'],
+            [12, 6, 'Soft Drinks'],
+            [13, 6, 'Juices'],
+            [14, 8, 'Frozen Snaks'],
+            [15, 8, 'Frozen Nonveg'],
+        ]);
     }
 
     /**

@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/jquery.flexslider.js',
+        'js/jquery.wmuSlider.js',
         'js/bootstrap.min.js',
         'js/move-top.js',
         'js/minicart.js',

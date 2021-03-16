@@ -27,7 +27,10 @@ jQuery(document).ready(function($) {
         }
     );
                         
-   $().UItoTop({ easingType: 'easeOutQuart' });							
+   $().UItoTop({ easingType: 'easeOutQuart' });		
+   
+   // About - Testimonials
+   $('.example1').wmuSlider();
 });
 
 $(function () {

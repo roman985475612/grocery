@@ -187,6 +187,17 @@ $session = \Yii::$app->session;
 		</div>
 	</div>
 <?php $this->endBody() ?>
+<?php if(!empty($session->getAllFlashes())): ?>
+	<?php foreach($session->getAllFlashes() as $key => $value): ?>
+		<script>
+			swal({
+				title: "<?= $value ?>",
+				icon: "<?= $key ?>"
+			})
+		</script>
+	<?php endforeach ?>
+<?php endif ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>

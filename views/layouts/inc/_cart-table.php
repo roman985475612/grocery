@@ -28,9 +28,9 @@ use yii\helpers\Html;
                 <?php foreach ($cart->cart() as $id => $item): ?>
                     <tr>
                         <td>
-                            <?= Html::img("@web/products/{$item['img']}", [
-                            'alt' => $item['title'],
-                            'class' => 'img-thumbnail cart-img',
+                            <?= Html::img("@web/images/{$item['img']}", [
+                                'alt'   => $item['title'],
+                                'class' => 'img-thumbnail cart-img',
                             ]) ?>
                         </td>
                         <td><?= $item['title'] ?></td>
@@ -39,9 +39,9 @@ use yii\helpers\Html;
                         <td><?= $item['sum'] ?></td>
                         <td>
                             <?= Html::tag('span', null, [
-                            'data-id' => $id,
-                            'class' => 'glyphicon glyphicon-remove text-danger del-item',
-                            'data-hidden' => 'true'
+                                'data-id'     => $id,
+                                'class'       => 'glyphicon glyphicon-remove text-danger del-item',
+                                'data-hidden' => 'true'
                             ]) ?>
                         </td>
                     </tr>

@@ -46,7 +46,7 @@ class Product extends AbstractModel
 
         $pagination = new Pagination([
             'totalCount'     => $query->count(),
-            'pageSize'       => 4,
+            'pageSize'       => 8,
             'forcePageParam' => false,
             'pageSizeParam'  => false,
         ]);
@@ -67,7 +67,7 @@ class Product extends AbstractModel
 
         $pagination = new Pagination([
             'totalCount'     => $query->count(),
-            'pageSize'       => 4,
+            'pageSize'       => 8,
             'forcePageParam' => false,
             'pageSizeParam'  => false,
         ]);

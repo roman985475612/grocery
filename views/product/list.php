@@ -71,21 +71,27 @@ use yii\helpers\Url;
 			</div>
 			<div class="w3ls_w3l_banner_nav_right_grid">
                 <h3><?= $topic ?></h3>
-                <div class="w3ls_w3l_banner_nav_right_grid1">
-                    <?php if (!empty($products)): ?>
-                        <?php foreach ($products as $product): ?>
-                            <?= $this->render('@app/views/layouts/inc/_card.php', ['product' => $product]) ?>
-                        <?php endforeach ?>
-                        <div class="clearfix"></div>
-                        <div class="col-md-12">
-                            <?= LinkPager::widget([
-                                'pagination' => $pagination,
-                            ])?>
-                        </div>
-                    <?php else: ?>
-                        <h6>Здесь пока нет товаров :(</h6>
-                    <?php endif ?>
-                </div>
+				<?php if (!empty($products)): ?>
+					<div class="w3ls_w3l_banner_nav_right_grid1">
+					<?php $i=0; foreach ($products as $product): ?>
+						<?php if($i != 0 && $i % 4 == 0): ?>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="w3ls_w3l_banner_nav_right_grid1">
+						<?php endif ?>
+						
+						<?= $this->render('@app/views/layouts/inc/_card.php', ['product' => $product]) ?>
+						
+					<?php $i++; endforeach ?>
+					</div>
+					<div class="col-md-12">
+						<?= LinkPager::widget([
+							'pagination' => $pagination,
+						])?>
+					</div>
+				<?php else: ?>
+					<p class="h1 text-center">Здесь пока нет товаров :(</p>
+				<?php endif ?>
 			</div>
 		</div>
 		<div class="clearfix"></div>

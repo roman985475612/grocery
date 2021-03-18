@@ -27,11 +27,8 @@ use yii\widgets\ActiveForm;
         src="<?= $model->getImage() ?>"
     >
     
-    <?//= $form->field($model, 'img', ['template' => '{input}'])->fileInput(['placeholder' => 'Image']) ?>
-
     <div class="custom-file">
         <input type="file" class="custom-file-input" id="customFile" name="Product[img]">
         <label class="custom-file-label" for="customFile">Choose file</label>
     </div>
-    <?//= yii\helpers\Html::submitButton('Submit') ?>
 <?php ActiveForm::end() ?>

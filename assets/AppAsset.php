@@ -30,6 +30,7 @@ class AppAsset extends AssetBundle
         'css/custom.css',
     ];
     public $js = [
+        '//unpkg.com/sweetalert/dist/sweetalert.min.js',
         'js/jquery.flexslider.js',
         'js/jquery.wmuSlider.js',
         'js/bootstrap.min.js',

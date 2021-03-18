@@ -43,8 +43,8 @@ use mihaildev\elfinder\ElFinder;
 								<td class="invert"><?= ++$i ?></td>
 								<td class="invert-image">
 									<a href="<?= Url::to(['product/detail', 'id' => $id]) ?>">
-										<?= Html::img("@web/products/{$item['img']}", [
-											'alt' => $item['title'],
+										<?= Html::img("@web/images/{$item['img']}", [
+											'alt' 	=> $item['title'],
 											'class' => 'img-thumbnail cart-img',
 										]) ?>
 									</a>

@@ -25,7 +25,7 @@ class m201103_084234_create_category_table extends Migration
             [2, 0, 'Househols'],
             [3, 0, 'Veggiets & Fruits'],
             [4, 0, 'Kitchen'],
-            [5, 0, 'Short Codes'],
+            [5, 0, 'Meat & Fish'],
             [6, 0, 'Beverages'],
             [7, 0, 'Pet Food'],
             [8, 0, 'Frozen Foods'],
